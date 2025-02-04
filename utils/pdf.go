@@ -12,15 +12,19 @@ func GenerateReceipt(transaction models.Transaction) string {
 	pdf.AddPage()
 
 	pdf.SetFont("Arial", "B", 16)
-	pdf.Cell(40, 10, "Фискальный чек")
+	pdf.Cell(40, 10, "Fiscal check")
 	pdf.Ln(10)
 
 	pdf.SetFont("Arial", "", 12)
-	pdf.Cell(40, 10, fmt.Sprintf("Номер транзакции: %d", transaction.ID))
+	pdf.Cell(40, 10, fmt.Sprintf("Trunsaction id: %d", transaction.ID))
 	pdf.Ln(10)
-	pdf.Cell(40, 10, fmt.Sprintf("Общая сумма: %.2f", transaction.TotalPrice))
+	pdf.Cell(40, 10, fmt.Sprintf("total amount: %.2f", transaction.TotalPrice))
 	pdf.Ln(10)
-	pdf.Cell(40, 10, fmt.Sprintf("Статус: %s", transaction.Status))
+	pdf.Cell(40, 10, fmt.Sprintf("Status: %s", transaction.Status))
+	pdf.Ln(10)
+	pdf.Cell(40, 10, "Thank you for your purchase!")
+	pdf.Ln(10)
+	pdf.Cell(40, 10, "Enjoy your premium subscription with MyEcho.")
 
 	pdf.OutputFileAndClose(filePath)
 	return filePath

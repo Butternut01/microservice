@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"premium_microservice/database"
 	"premium_microservice/models"
+	"premium_microservice/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -88,5 +89,10 @@ func ProcessPayment(c *gin.Context) {
 	}
 
 	database.DB.Save(&transaction)
+	filepath := utils.GenerateReceipt(transaction)
+	err := utils.SendReceipt(transaction.Email, filepath)
+	if err != nil {
+		log.Fatal("failt to send email:", err)
+	}
 	c.JSON(http.StatusOK, gin.H{"transaction_id": transaction.ID, "status": transaction.Status})
 }

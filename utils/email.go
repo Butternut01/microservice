@@ -12,6 +12,6 @@ func SendReceipt(email, filePath string) error {
 	m.SetBody("text/plain", "Спасибо за оплату! Ваш чек во вложении.")
 	m.Attach(filePath)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "sabdpp17@gmail.com", "vili ubad mijt vbqo")
+	d := gomail.NewDialer("smtp.gmail.com", 587, "sabdpp17@gmail.com", "vlli ubad mjjt vbqo")
 	return d.DialAndSend(m)
 }
